@@ -32,4 +32,4 @@ def create_result(comp_id, user_id, score):
             return None
 
 def update_result(new_result):
-    
+    pass

@@ -1,26 +1,15 @@
 from App.database import db
-from .user import User
+from App.models import Admin
 
-class Admin(User):
-    __tablename__ = 'admin'
-    id = db.Column(db.Integer, db.ForeignKey('user.id'), primary_key=True)
-    username =  db.Column(db.String, nullable=False, unique=True)
-    competitions = db.relationship('Competition', back_populates='admin')
+def create_admin(username, password):
+    newadmin = Admin(username=username, password=password)
+    try:
+        db.session.add(newadmin)
+        db.session.commit()
+        return newadmin
+    except:
+        return None
     
-    def __init__(self, username, password):
-        self.username = username
-        self.set_password(password)
-
-    def toJSON(self):
-        competition_list = []
-
-        for comp in self.competitions:
-            if comp:
-                comp_info = comp.toJSON()
-                competition_list.append(comp_info)
-
-        return {
-            'admin_id': self.id,
-            'username': self.username,
-            'admin_comps': competition_list
-        }
+def is_admin(admin_id):
+    admin = Admin.query.filter_by(id=admin_id).first()
+    return admin is not None
