@@ -24,33 +24,12 @@ class Competition(db.Model):
 
     def __repr__(self):
         return f'{self.name} {self.details}'
-
+      
     def toJSON(self):
-        result_list = []
-        
-        for result in self.results:
-            if result:
-                result_info = result.toJSON()
-                result_list.append(result_info)
-
-        user_list = []
-        for user in self.users:
-            if user:
-                # Access user information through the Roster relationship
-                user_info = {
-                    'user_id': user.regularuser.id,
-                    'username': user.regularuser.username,
-                    'rank': user.regularuser.rank,
-                    'overall': user.regularuser.overall,
-                }
-                user_list.append(user_info)
-
         return {
             'comp_id': self.id,
             'comp_name': self.name,
             'comp_details': self.details,
             'comp_date': self.event_date,
             'comp_admin': self.admin.username,
-            'results': result_list,
-            'registered_users': user_list,
         }

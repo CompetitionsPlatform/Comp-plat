@@ -5,7 +5,21 @@ from App.controllers import is_admin, is_user
 
 def get_comp_by_id(comp_id):
     get_comp = Competition.query.filter_by(comp_id=comp_id).first()
+
+def get_all_comps():
+    competitions = Competition.query.all()
+
+    competition_list = []
+
+    for comp in competitions:
+        competition_list.append(comp.toJSON())
     
+    if competition_list:
+        return competition_list
+    
+    else:
+        return None
+
 def create_competition(admin_id, name, details, date):
     if is_admin(admin_id):
         new_competition = Competition(admin_id, name, details, date)
