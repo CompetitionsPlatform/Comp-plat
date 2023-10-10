@@ -54,4 +54,3 @@ class Competition(db.Model):
             'results': result_list,
             'registered_users': user_list,
         }
-    
