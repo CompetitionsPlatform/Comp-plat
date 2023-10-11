@@ -16,6 +16,13 @@ class RegularUser(User):
         self.rank = 0
         self.overall = 0.0
 
+    def toJSON_brief(self):
+        return{
+            'user_id': self.id,
+            'username': self.username,
+            'rank': self.rank
+        }
+
     def toJSON(self):
         competition_list = []
 
