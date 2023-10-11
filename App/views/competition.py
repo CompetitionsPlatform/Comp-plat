@@ -46,5 +46,3 @@ def competition_detail_page_delete(id):
         return jsonify({"success": "competition deleted"})
     else:
         return jsonif({"error": "cannot process request"}), 400
-
-     
