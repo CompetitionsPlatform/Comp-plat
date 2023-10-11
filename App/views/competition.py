@@ -43,8 +43,6 @@ def competitions_page_create():
 def competition_detail_page_delete(id):
     comp = delete_competition(id)
     if comp:
-        return jsonify({"success": "competition deleted"})
+        return jsonify({"success": "competition deleted"}), 200
     else:
         return jsonif({"error": "cannot process request"}), 400
-
-@comp_views.route('/competitions/<int:id>', methods=['POST'])
