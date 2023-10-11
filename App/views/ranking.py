@@ -4,7 +4,7 @@ from App.controllers import *
 
 rankingviews = Blueprint('ranking_views', __name__, template_folder='../templates')
 
-@ranking_views.route('/ranking', methods=['GET'])
+@ranking_views.route('/rankings', methods=['GET'])
 def get_ranked():
     users = RegularUser.query.order_by(RegularUser.rank.desc()).limit(20).all()
     top20 = []
