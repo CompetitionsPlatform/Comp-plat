@@ -1,6 +1,7 @@
 from App.database import db
 from App.models import Competition
 from App.models import Result
+from App.models import RegularUser
 from App.controllers import is_admin, is_user
 
 def get_comp_by_id(comp_id):
@@ -49,6 +50,9 @@ def get_all_comps():
     else:
         return None
 
+def get_ranked():
+    users = RegularUser.query.order_by(RegularUser.rank.desc()).limit(20).all()
+    
 def create_result(comp_id, user_id, score):
     if is_user(user_id):
         new_result = Result(comp_id, user_id, score)

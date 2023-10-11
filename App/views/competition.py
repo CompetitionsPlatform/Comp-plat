@@ -1,7 +1,7 @@
 from flask import Blueprint, redirect, render_template, request, send_from_directory, jsonify
 from App.models import db
 from flask_login import current_user
-from App.controllers import get_all_comps, get_comp_by_id, is_admin, create_competition, is_competition, delete_competition
+from App.controllers import get_all_comps, get_comp_by_id, is_admin, create_competition, is_competition, delete_competition, create_results
 
 comp_views = Blueprint('comp_views', __name__, template_folder='../templates')
 
@@ -47,4 +47,4 @@ def competition_detail_page_delete(id):
     else:
         return jsonif({"error": "cannot process request"}), 400
 
-     
+@comp_views.route('/competitions/<int:id>', methods=['POST'])
