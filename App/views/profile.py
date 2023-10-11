@@ -5,7 +5,7 @@ from App.controllers import *
 
 profile_views = Blueprint('profile_views', __name__, template_folder='../templates')
 
-@profile_views.route('/profile/<int:id>', methods=['GET'])
+@profile_views.route('/profiles/<int:id>', methods=['GET'])
 def get_profile_page(id):
     user = get_user_by_id(id)
     if user:
