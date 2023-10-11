@@ -25,6 +25,15 @@ class Competition(db.Model):
     def __repr__(self):
         return f'{self.name} {self.details}'
 
+    def toJSON_brief(self):
+        return {
+            'comp_id': self.id,
+            'comp_name': self.name,
+            'comp_details': self.details,
+            'comp_date': self.event_date,
+            'comp_admin': self.admin.username,
+        }
+
     def toJSON(self):
         result_list = []
         
