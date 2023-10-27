@@ -26,12 +26,14 @@ class Competition(db.Model):
         return f'{self.name} {self.details}'
 
     def toJSON_brief(self):
+        comp_admin_username = self.admin.username if self.admin else None
+
         return {
             'comp_id': self.id,
             'comp_name': self.name,
             'comp_details': self.details,
             'comp_date': self.event_date,
-            'comp_admin': self.admin.username,
+            'comp_admin': comp_admin_username,
         }
 
     def toJSON(self):
@@ -54,12 +56,14 @@ class Competition(db.Model):
                 }
                 user_list.append(user_info)
 
+        comp_admin_username = self.admin.username if self.admin else None
+
         return {
             'comp_id': self.id,
             'comp_name': self.name,
             'comp_details': self.details,
             'comp_date': self.event_date,
-            'comp_admin': self.admin.username,
+            'comp_admin_username': comp_admin_username,
             'results': result_list,
             'registered_users': user_list,
         }
