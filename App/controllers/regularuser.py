@@ -15,7 +15,11 @@ def is_user(user_id):
     return user is not None
 
 def get_user_by_id(user_id):
-    pass
+    user = RegularUser.query.filter_by(id=user_id).first()
+    if user:
+        return user
+    else:
+        return None
 
 def toggle_registration(user_id, comp_id):
     existing_registration = Roster.query.filter_by(user_id=user_id, comp_id=comp_id).first()
