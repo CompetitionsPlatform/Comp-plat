@@ -67,3 +67,68 @@ def user_tests_command(type):
     
 
 app.cli.add_command(test)
+
+############################################################################################################
+#A2 TESTS###################################################################################################
+############################################################################################################
+
+regUsrTests = AppGroup('regUserTest', help="run regular user tests")
+@regUsrTests.command("regUser", help="Run Regular User tests")
+@click.argument("type", default="all")
+def reg_user_command(type):
+    if type == "unit":
+        sys.exit(pytest.main(["-k", "RegularUserUnitTests"]))
+    elif type == "int":
+        sys.exit(pytest.main(["-k", "RegularUserIntegrationTests"]))
+    else:
+        sys.exit(pytest.main(["-k", "App"]))
+
+app.cli.add_command(regUsrTests)
+
+adminTests = AppGroup("adminTests", help="run admin tests")
+@adminTests.command("admin", help="run admin tests")
+@click.argument("type", default="all")
+def admin_command(type):
+    if type == "unit":
+        sys.exit(pytest.main(["-k", "AdminUnitTests"]))
+    elif type == "int":
+        sys.exit(pytest.main(["-k", "AdminIntegrationTests"]))
+    else:
+        sys.exit(pytest.main(["-k", "App"]))
+
+app.cli.add_command(adminTests)
+
+competitionTests = AppGroup("competitionTests", help="run competition tests")
+@competitionTests.command("comp", help="run competition tests")
+@click.argument("type", default="all")
+def competition_command(type):
+    if type == "unit":
+        sys.exit(pytest.main(["-k", "CompetitionUnitTests"]))
+    elif type == "int":
+        sys.exit(pytest.main(["-k", "CompetitionIntegrationTests"]))
+    else:
+        sys.exit(pytest.main(["-k", "App"]))
+
+app.cli.add_command(competitionTests)
+
+resultTests = AppGroup("resultTests", help="run result tests")
+@resultTests.command("result", help="run result tests")
+@click.argument("type", default="all")
+def result_command(type):
+    if type == "unit":
+        sys.exit(pytest.main(["-k", "ResultUnitTests"]))
+    else:
+        sys.exit(pytest.main(["-k", "App"]))
+
+app.cli.add_command(resultTests)
+
+rosterTests = AppGroup("rosterTests", help="run roster tests")
+@rosterTests.command("roster", help="run roster tests")
+@click.argument("type", default="all")
+def roster_command(type):
+    if type == "unit":
+        sys.exit(pytest.main(["-k", "RosterUnitTests"]))
+    else:
+        sys.exit(pytest.main(["-k", "App"]))
+
+app.cli.add_command(rosterTests)
