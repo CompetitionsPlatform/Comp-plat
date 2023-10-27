@@ -6,3 +6,7 @@ class Roster(db.Model):
     comp_id = db.Column(db.Integer, db.ForeignKey('competition.id'), nullable=False)
     regularuser = db.relationship('RegularUser', back_populates='competitions')
     competition = db.relationship('Competition', back_populates='users')
+
+    def __init__(self, user_id, comp_id):
+        self.user_id = user_id
+        self.comp_id = comp_id
